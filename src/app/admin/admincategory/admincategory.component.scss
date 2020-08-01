@@ -1,0 +1,213 @@
+.wrapper {
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid silver;
+    border-radius: 5px;
+}
+header {
+    width: 100%;
+    height: 100px;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid silver;
+    background-color: whitesmoke;
+    & input {
+        width: 100px;
+    }
+}
+main {
+    width: 100%;
+    min-height: 400px;
+    padding: 20px;
+    border: 1px solid silver;
+    & div:nth-last-of-type(1) {
+        height: 60px;
+        border-bottom: 1px solid silver;
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th {
+    height: 50px;
+    border: 1px solid silver;
+    text-align: left;
+    background-color: rgb(211, 211, 211);
+    & span:hover {
+        cursor: pointer;
+    }
+    &:nth-of-type(1) {
+        width: 60px;
+        text-align: center;
+    }
+    &:nth-of-type(2) {
+        width: 45%;
+        padding-left: 10px;
+    }
+    &:nth-of-type(3) {
+        width: 45%;
+        padding-left: 10px;
+    }
+    &:nth-of-type(4) {
+        width: 100px;
+        text-align: center;
+    }
+}
+tbody tr:hover {
+    background-color: whitesmoke;
+}
+
+td {
+    height: 50px;
+    text-align: left;
+    border-top: 1px solid silver;
+    &:nth-of-type(1) {
+        text-align: center;
+    }
+    &:nth-of-type(2) {
+        padding-left: 10px;
+    }
+    &:nth-of-type(3) {
+        padding-left: 10px;
+    }
+    &:nth-of-type(4) {
+        text-align: center;
+    }
+}
+
+// ---- Модалка -----
+.myModal {
+    z-index: 3;
+    padding-top: 100px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__header {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 20px;
+    font-size: 22px;
+    & span:last-child {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 30px;
+        transition: 0.7s;
+        &:hover {
+            background-color: silver;
+            color: red;
+            cursor: pointer;
+            transform: rotate(360deg);
+        }
+    }
+}
+
+.modal__content {
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+    padding: 0;
+    outline: 0;
+    width: 500px;
+    height: 230px;
+    border-radius: 5px;
+}
+.modal__body {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    padding: 0 20px 0 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+    & div {
+        width: 48%;
+    }
+}
+
+.modal__footer {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    & input {
+        height: 30px;
+        border-radius: 5px;
+        border: 0;
+        color: white;
+        background-color: gray;
+        &:hover {
+            cursor: pointer;
+            background-color: silver;
+            box-shadow: 0px 0px 4px 0px gray;
+        }
+    }
+    & input[value="Close"] {
+        width: 60px;
+        margin-right: 10px;
+    }
+    & input[value="Add"] {
+        width: 50px;
+    }
+}
+// little modal delete category
+.myModal2 {
+    z-index: 3;
+    padding-top: 400px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__content2 {
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+    padding: 0;
+    outline: 0;
+    width: 300px;
+    height: 70px;
+    border-radius: 5px;
+}
+
+.modal__body2 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+    & input {
+        width: 48%;
+        &[value="Delete"] {
+            background-color: red;
+        }
+    }
+}

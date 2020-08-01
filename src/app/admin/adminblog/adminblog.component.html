@@ -1,0 +1,40 @@
+<form>
+    <input type="text" [(ngModel)]="title" name="title" placeholder="title here..">
+    <textarea [(ngModel)]="text" name="text" placeholder="text here.."></textarea>
+    <input type="text" [(ngModel)]="author" name="author" placeholder="author here..">
+    <ng-container *ngIf="!swichEdit; else save">
+        <input type="button" class="btn-dark" value="Add" (click)="addBlog()">
+    </ng-container>    
+    <ng-template #save>
+        <input type="button" class="btn-light" value="Save edit" (click)="saveEdit(b)">
+    </ng-template>    
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Text</th>
+            <th>Date</th>
+            <th>Author</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let b of blogs; let i = index" class="user">
+            <td>{{ i+1 }}</td>
+            <td>{{ b.title }}</td>
+            <td>{{ b.text }}</td>
+            <td>{{ b.date | date }}</td>
+            <td>{{ b.author }}</td>
+            <td>
+                <input type="button" class="btn-dark" value="Edit" (click)="editBlog(b)">
+            </td>
+            <td>
+                <input type="button" class="btn-dark" value="Delete" (click)="deleteBlog(b)">
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,8 @@
+<div class="wrapper">
+    <div class="blog" *ngFor="let b of userBlog; let i = index">
+        <div></div>
+        <div>{{ b.date | date }} {{ b.author }}</div>
+        <div>{{ b.title }}</div>
+        <div>{{ b.text }}</div>
+    </div>
+</div>

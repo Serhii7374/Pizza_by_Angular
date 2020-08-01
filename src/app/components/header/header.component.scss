@@ -1,0 +1,29 @@
+header {
+    height: 70px;
+    width: 100%;
+    background-color: rgb(55, 55, 55);
+    display: flex;
+    align-items: center;
+    & h1 {
+        color: white;
+        margin: 0 10px 0 20px;
+        user-select: none;
+    }
+    & nav {
+        color: lightgrey;
+    }
+}
+li{
+    display: inline;
+    margin: 0 10px;
+    font-size: 18px;
+    outline: none;
+    &:hover{
+        cursor: pointer;
+        color: white;
+    }
+}
+
+.active{    
+    color: white;
+}

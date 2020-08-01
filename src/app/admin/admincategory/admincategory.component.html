@@ -1,0 +1,84 @@
+<div class="wrapper">
+    <header>
+        <h3>Category</h3>
+        <input type="button" class="btn-dark" value="Add" (click)="openModal()">
+    </header>
+    <main>
+        <div>
+            <input type="text" [(ngModel)]="SearchText" name="SearchText" placeholder="filter category..">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th><span (click)='sort()'>№     
+                        <ng-container *ngIf="swichArrow || swichArrow === undefined">                      
+                            <i *ngIf="swichIDSort" class="fa fa-sort-asc"></i>
+                            <i *ngIf="!swichIDSort" class="fa fa-caret-down"></i> 
+                        </ng-container>                           
+                        </span></th>
+                    <th><span (click)='sortNameEN()'>Name EN
+                            <ng-container *ngIf="swichArrowEN">
+                                <i *ngIf="swichNameENSort" class="fa fa-caret-down"></i>
+                                <i *ngIf="!swichNameENSort" class="fa fa-sort-asc"></i>
+                            </ng-container>
+                        </span></th>
+                    <th><span (click)='sortNameUA()'>Name UA
+                            <ng-container *ngIf="swichArrowUA">
+                                <i *ngIf="swichNameUASort" class="fa fa-caret-down"></i>
+                                <i *ngIf="!swichNameUASort" class="fa fa-sort-asc"></i>
+                            </ng-container>
+                        </span></th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let c of categories | search:SearchText | sort:swichIDSort:swichNameENSort:swichNameUASort; let i=index">
+                    <td>{{ c.id }}</td>
+                    <td>{{ c.nameEN }}</td>
+                    <td>{{ c.nameUA }}</td>
+                    <td>
+                        <input type="button" class="btn-dark" value="Delete" (click)="deleteCategory(c)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+
+
+<!-- Модалка 2 створення блогу -->
+
+<ng-container *ngIf="modalAddSwich">
+    <div class="myModal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <span>Category model</span>
+                <span (click)="closeModal()">&times;</span>
+            </div>
+            <div class="modal__body">
+                <div>                    
+                    <input type="text" [(ngModel)]="nameEN" name="nameEN" placeholder="name EN here..">
+                </div>
+                <div>
+                    <input type="text" [(ngModel)]="nameUA" name="nameUA" placeholder="name UA here..">
+                </div>
+            </div>
+            <div class="modal__footer">
+                <input type="button" value="Close" (click)="closeModal()">
+                <input type="button" value="Add" (click)="addCategory()">
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="modalSwichDelete">
+    <div class="myModal2">
+        <div class="modal__content2">
+            <div class="modal__body2">
+                <input type="button" value="Dismiss" class="btn-dark" (click)="closeDeleteModal()">
+                <input type="button" value="Delete" class="btn-dark" (click)="delete()">
+            </div>
+        </div>
+    </div>
+</ng-container>

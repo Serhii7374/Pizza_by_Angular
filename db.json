@@ -1,0 +1,36 @@
+{
+  "blogs": [
+    {
+      "id": 13,
+      "title": "Title 1",
+      "text": "some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text ",
+      "date": "2020-07-28T17:08:24.070Z",
+      "author": "Serhii Ivanytskyi"
+    },
+    {
+      "title": "news",
+      "text": "Акція 1+1=0",
+      "date": "2020-07-29T14:24:18.999Z",
+      "author": "жмот",
+      "id": 14
+    }
+  ],
+  "categories": [
+    {
+      "nameEN": "salad",
+      "nameUA": "салат",
+      "id": 1
+    },
+    {
+      "nameEN": "alcohol",
+      "nameUA": "бухло",
+      "id": 2
+    },
+    {
+      "nameEN": "pizza",
+      "nameUA": "піца",
+      "id": 3
+    }
+  ],
+  "products": []
+}
