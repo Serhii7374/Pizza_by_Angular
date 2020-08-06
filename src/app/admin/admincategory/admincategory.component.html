@@ -10,30 +10,31 @@
         <table>
             <thead>
                 <tr>
-                    <th><span (click)='sort()'>№     
-                        <ng-container *ngIf="swichArrow || swichArrow === undefined">                      
-                            <i *ngIf="swichIDSort" class="fa fa-sort-asc"></i>
-                            <i *ngIf="!swichIDSort" class="fa fa-caret-down"></i> 
-                        </ng-container>                           
+                    <th>
+                        <span (click)='sort("id")'>№
+                            <span [class.activeArrow]="order === 'id'">
+                                <i *ngIf="reverse" class="fa fa-sort-asc"></i>
+                                <i *ngIf="!reverse" class="fa fa-caret-down"></i>
+                            </span>
+                        </span>
+                    </th>
+                    <th><span (click)='sort("nameEN")'>Name EN
+                            <span [class.activeArrow]="order === 'nameEN'">
+                                <i *ngIf="reverse" class="fa fa-sort-asc"></i>
+                                <i *ngIf="!reverse" class="fa fa-caret-down"></i>
+                            </span>
                         </span></th>
-                    <th><span (click)='sortNameEN()'>Name EN
-                            <ng-container *ngIf="swichArrowEN">
-                                <i *ngIf="swichNameENSort" class="fa fa-caret-down"></i>
-                                <i *ngIf="!swichNameENSort" class="fa fa-sort-asc"></i>
-                            </ng-container>
-                        </span></th>
-                    <th><span (click)='sortNameUA()'>Name UA
-                            <ng-container *ngIf="swichArrowUA">
-                                <i *ngIf="swichNameUASort" class="fa fa-caret-down"></i>
-                                <i *ngIf="!swichNameUASort" class="fa fa-sort-asc"></i>
-                            </ng-container>
+                    <th><span (click)='sort("nameUA")'>Name UA
+                            <span [class.activeArrow]="order === 'nameUA'">
+                                <i *ngIf="reverse" class="fa fa-sort-asc"></i>
+                                <i *ngIf="!reverse" class="fa fa-caret-down"></i>
+                            </span>
                         </span></th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    *ngFor="let c of categories | search:SearchText | sort:swichIDSort:swichNameENSort:swichNameUASort; let i=index">
+                <tr *ngFor="let c of categories | search:SearchText | sort:order:reverse; let i=index">
                     <td>{{ c.id }}</td>
                     <td>{{ c.nameEN }}</td>
                     <td>{{ c.nameUA }}</td>
@@ -47,7 +48,7 @@
 </div>
 
 
-<!-- Модалка 2 створення блогу -->
+<!-- Модалка створення блогу -->
 
 <ng-container *ngIf="modalAddSwich">
     <div class="myModal">
@@ -57,7 +58,7 @@
                 <span (click)="closeModal()">&times;</span>
             </div>
             <div class="modal__body">
-                <div>                    
+                <div>
                     <input type="text" [(ngModel)]="nameEN" name="nameEN" placeholder="name EN here..">
                 </div>
                 <div>
@@ -71,6 +72,8 @@
         </div>
     </div>
 </ng-container>
+
+<!-- модалка для видалення категорії -->
 
 <ng-container *ngIf="modalSwichDelete">
     <div class="myModal2">

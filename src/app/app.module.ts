@@ -12,6 +12,14 @@ import { AdminComponent } from './admin/admin.component';
 import { AdmincategoryComponent } from './admin/admincategory/admincategory.component';
 import { SearchPipe } from './shared/pipes/search.pipe';
 import { SortPipe } from './shared/pipes/sort.pipe';
+import { AdminProductComponent } from './admin/admin-product/admin-product.component';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from '../environments/environment';
+import { SortProductPipe } from './shared/pipes/sort-product.pipe';
 
 @NgModule({
   declarations: [
@@ -22,13 +30,19 @@ import { SortPipe } from './shared/pipes/sort.pipe';
     AdminComponent,
     AdmincategoryComponent,
     SearchPipe,
-    SortPipe
+    SortPipe,
+    SortProductPipe,
+    AdminProductComponent    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

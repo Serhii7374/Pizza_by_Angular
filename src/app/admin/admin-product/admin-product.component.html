@@ -1,0 +1,148 @@
+<div class="wrapper">
+    <header>
+        <h3>Product</h3>
+        <input type="button" class="btn-dark" value="Add" (click)="openModal()">
+    </header>
+    <main>
+        <div>
+            <input type="text" [(ngModel)]="SearchText" name="SearchText" placeholder="filter product..">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th><span (click)='sort("id")'>№
+                            <span [class.activeArrow]="order === 'id'">
+                                <i *ngIf="reverse" class="fa fa-sort-asc"></i>
+                                <i *ngIf="!reverse" class="fa fa-caret-down"></i>
+                            </span>
+                        </span>
+                    </th>
+                    <th><span (click)='sort("category.nameEN")'>Category Name
+                            <span [class.activeArrow]="order === 'category.nameEN'">
+                                <i *ngIf="reverse" class="fa fa-sort-asc"></i>
+                                <i *ngIf="!reverse" class="fa fa-caret-down"></i>
+                            </span>
+                        </span>
+                    </th>
+                    <th><span (click)='sort("nameEN")'>Name EN
+                            <span [class.activeArrow]="order === 'nameEN'">
+                                <i *ngIf="reverse" class="fa fa-sort-asc"></i>
+                                <i *ngIf="!reverse" class="fa fa-caret-down"></i>
+                            </span>
+                        </span>
+                    </th>
+                    <th><span (click)='sort("nameUA")'>Name UA
+                            <span [class.activeArrow]="order === 'nameUA'">
+                                <i *ngIf="reverse" class="fa fa-sort-asc"></i>
+                                <i *ngIf="!reverse" class="fa fa-caret-down"></i>
+                            </span>
+                        </span>
+                    </th>
+                    <th>
+                        <span>Description</span>
+                    </th>
+                    <th><span (click)='sort("weight")'>Weight
+                            <span [class.activeArrow]="order === 'weight'">
+                                <i *ngIf="reverse" class="fa fa-sort-asc"></i>
+                                <i *ngIf="!reverse" class="fa fa-caret-down"></i>
+                            </span>
+                        </span>
+                    </th>
+                    <th><span (click)='sort("price")'>Price
+                            <span [class.activeArrow]="order === 'price'">
+                                <i *ngIf="reverse" class="fa fa-sort-asc"></i>
+                                <i *ngIf="!reverse" class="fa fa-caret-down"></i>
+                            </span>
+                        </span>
+                    </th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of product | search:SearchText | sortProduct:order:reverse; let i=index">
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.category.nameEN }}</td>
+                    <td>{{ p.nameEN }}</td>
+                    <td>{{ p.nameUA }}</td>
+                    <td>{{ p.description }}</td>
+                    <td>{{ p.weight }}</td>
+                    <td>{{ p.price }}</td>
+                    <td>
+                        <input type="button" class="btn-dark" value="Edit" (click)="deleteCategory(p)">
+                    </td>
+                    <td>
+                        <input type="button" class="btn-dark" value="Delete" (click)="deleteCategory(p)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+
+
+<!-- Модалка 2 створення блогу -->
+
+<ng-container *ngIf="modalAddSwich">
+    <div class="myModal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <span>Product model</span>
+                <span (click)="closeModal()">&times;</span>
+            </div>
+            <div class="modal__body">
+                <form>
+                    <div>
+                        <select [(ngModel)]="categoryName" name="categoryName" (change)="setCategory()">
+                            <option *ngFor="let category of categories">
+                                {{ category.nameEN }}
+                            </option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="productNameEN" name="productNameEN"
+                            placeholder="name EN here..">
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="productNameUA" name="productNameUA"
+                            placeholder="name UA here..">
+                    </div>
+                    <div>
+                        <textarea [(ngModel)]="productDescription" name="productDescription"
+                            placeholder="description here.."></textarea>
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="productWeight" name="productWeight" placeholder="weight here..">
+                    </div>
+                    <div>
+                        <input type="text" [(ngModel)]="productPrice" name="productPrice" placeholder="price here..">
+                    </div>
+                </form>
+                <div class="fileBox">
+                    <label for="file">
+                        <div>choose image</div>                        
+                        <input (change)="uploadFile($event)" type="file" id="file">
+                    </label>                    
+                    <img [src]="productImage" alt="" style="width: 200px; max-height: 200px;">
+                </div>
+            </div>
+            <div class="modal__footer">
+                <input type="button" value="Close" (click)="closeModal()">
+                <input type="button" value="Add" (click)="addCategory()">
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<!-- модалка видалення продукту -->
+
+<ng-container *ngIf="modalSwichDelete">
+    <div class="myModal2">
+        <div class="modal__content2">
+            <div class="modal__body2">
+                <input type="button" value="Dismiss" class="btn-dark" (click)="closeDeleteModal()">
+                <input type="button" value="Delete" class="btn-dark" (click)="delete()">
+            </div>
+        </div>
+    </div>
+</ng-container>

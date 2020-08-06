@@ -14,27 +14,21 @@ export class AdmincategoryComponent implements OnInit {
   nameEN: string;
   nameUA: string;
   cID = 1;
-  swichArrow: boolean;
-  swichArrowID: boolean;
-  swichArrowEN: boolean;
-  swichArrowUA: boolean;
-  swichIDSort: boolean;
-  swichNameENSort: boolean;
-  swichNameUASort: boolean;
+
+  order: string = 'id';
+  reverse = false;
 
   modalAddSwich: boolean;
   modalSwichDelete: boolean;
 
-
-
-  constructor(private CategoryServise: CategoryService) { }
+  constructor(private CategoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.adminJSONCategory();
   }
 
   private adminJSONCategory(): void {
-    this.CategoryServise.getJSONCategory().subscribe(data => {
+    this.CategoryService.getJSONCategory().subscribe(data => {
       this.categories = data;
     });
   }
@@ -43,7 +37,7 @@ export class AdmincategoryComponent implements OnInit {
     if (this.nameEN && this.nameUA) {
       const category: ICategory = new Category(this.cID, this.nameEN, this.nameUA);
       delete category.id;
-      this.CategoryServise.postJSONCategory(category).subscribe(
+      this.CategoryService.postJSONCategory(category).subscribe(
         () => { this.adminJSONCategory(); }
       );
       this.nameEN = '';
@@ -59,36 +53,17 @@ export class AdmincategoryComponent implements OnInit {
   }
   delete() {
     this.modalSwichDelete = !this.modalSwichDelete;
-    this.CategoryServise.deleteJSONCategory(this.cID).subscribe(
+    this.CategoryService.deleteJSONCategory(this.cID).subscribe(
       () => { this.adminJSONCategory(); }
     );
   }
 
-
-  sort() {
-    this.swichArrow = true;
-    this.swichArrowEN = false;
-    this.swichArrowUA = false;
-    this.swichIDSort = !this.swichIDSort;
-    this.swichNameENSort = false;
-    this.swichNameUASort = false;
-  }
-  sortNameEN() {
-    this.swichArrowEN = true;
-    this.swichArrowUA = false;
-    this.swichArrow = false;
-    this.swichNameENSort = !this.swichNameENSort;
-    this.swichIDSort = false;
-    this.swichNameUASort = false;
-  }
-  sortNameUA() {
-    this.swichArrowEN = false;
-    this.swichArrowUA = true;
-    this.swichArrow = false;
-    this.swichNameUASort = !this.swichNameUASort;
-    this.swichIDSort = false;
-    this.swichNameENSort = false;
-  }
+  sort(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+    this.order = value;
+  }  
 
   openModal(): void {
     this.modalAddSwich = !this.modalAddSwich;

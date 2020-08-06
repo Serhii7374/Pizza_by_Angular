@@ -41,7 +41,6 @@ i {
 }
 // -------------------------------------
 
-// --- стилі для таблиці ---
 table {
     width: 100%;
     border-collapse: collapse;
@@ -59,14 +58,34 @@ th {
         text-align: center;
     }
     &:nth-of-type(2) {
-        width: 45%;
+        width: 100px;
         padding-left: 10px;
     }
     &:nth-of-type(3) {
-        width: 45%;
+        width: 100px;
         padding-left: 10px;
     }
     &:nth-of-type(4) {
+        width: 100px;
+        text-align: center;
+    }
+    &:nth-of-type(5) {
+        width: 50%;
+        text-align: center;
+    }
+    &:nth-of-type(6) {
+        width: 100px;
+        text-align: center;
+    }
+    &:nth-of-type(7) {
+        width: 100px;
+        text-align: center;
+    }
+    &:nth-of-type(8) {
+        width: 100px;
+        text-align: center;
+    }
+    &:nth-of-type(9) {
         width: 100px;
         text-align: center;
     }
@@ -91,10 +110,25 @@ td {
     &:nth-of-type(4) {
         text-align: center;
     }
+    &:nth-of-type(5) {
+        text-align: center;
+    }
+    &:nth-of-type(6) {
+        text-align: center;
+    }
+    &:nth-of-type(7) {
+        text-align: center;
+    }
+    &:nth-of-type(8) {
+        text-align: center;
+    }
+    &:nth-of-type(9) {
+        text-align: center;
+    }
 }
-// --------------------------------
 
-// ---- Модалка -----
+
+// ---- MODAL Add Product-----
 .myModal {
     z-index: 3;
     padding-top: 100px;
@@ -141,20 +175,69 @@ td {
     padding: 0;
     outline: 0;
     width: 500px;
-    height: 230px;
+    min-height: 640px;
     border-radius: 5px;
 }
 .modal__body {
     width: 100%;
-    height: 90px;
+    min-height: 500px;
     display: flex;
-    padding: 0 20px 0 20px;
-    justify-content: space-between;
+    padding: 20px;
+    flex-direction: column;
     align-items: center;
     border-top: 1px solid silver;
     border-bottom: 1px solid silver;
-    & div {
-        width: 48%;
+    & form {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-bottom: 20px;
+        & div {
+            width: 100%;
+        }
+        & textarea {
+            width: 100%;
+            height: 100px;
+            resize: none;
+            outline: none;
+            border: 1px solid silver;
+            border-radius: 5px;
+            padding: 10px;
+            &:focus {
+                box-shadow: 0px 0px 5px 2px lightgray;
+                border: 0;
+            }
+        }
+        & select {
+            width: 100%;
+            padding-left: 10px;
+        }
+    }
+}
+.fileBox {
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;        
+    & label {
+        & div {
+            min-height: 40px;
+            width: 150px;
+            border: 1px solid silver;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        & input {
+            display: none;
+        }
     }
 }
 
@@ -185,9 +268,8 @@ td {
         width: 50px;
     }
 }
-// -----------------------------
 
-// little modal delete category
+// little MODAL Delete Product
 .myModal2 {
     z-index: 3;
     padding-top: 400px;
@@ -226,4 +308,3 @@ td {
         }
     }
 }
-// ------------------------------------

@@ -3,8 +3,8 @@
     {
       "id": 13,
       "title": "Title 1",
-      "text": "some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text ",
-      "date": "2020-07-28T17:08:24.070Z",
+      "text": "some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text",
+      "date": "2020-08-04T18:03:03.964Z",
       "author": "Serhii Ivanytskyi"
     },
     {
@@ -32,5 +32,35 @@
       "id": 3
     }
   ],
-  "products": []
+  "products": [
+    {
+      "category": {
+        "nameEN": "salad",
+        "nameUA": "салат",
+        "id": 1
+      },
+      "nameEN": "test",
+      "nameUA": "test",
+      "description": "test",
+      "weight": "100 gr",
+      "price": "100",
+      "count": 1,
+      "id": 1
+    },
+    {
+      "category": {
+        "nameEN": "alcohol",
+        "nameUA": "бухло",
+        "id": 2
+      },
+      "nameEN": "beer",
+      "nameUA": "пиво",
+      "description": "\"балтика 7\", 0,5 л",
+      "weight": "0,5 л",
+      "price": "20",
+      "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fpizza3.png?alt=media&token=aef39bed-f841-4a2d-82d7-b51cff68cecb",
+      "count": 1,
+      "id": 3
+    }
+  ]
 }
