@@ -18,7 +18,7 @@ export class AdminProductComponent implements OnInit {
   productID = 1;
 
   categories: Array<ICategory> = [];
-  categoryName: string;
+  categoryName = "choose category..";
   productCategory: ICategory = { id: 1, nameEN: 'pizza', nameUA: 'піца' };
   productNameEN: string;
   productNameUA: string;
@@ -35,11 +35,13 @@ export class AdminProductComponent implements OnInit {
   modalAddSwich: boolean;
   modalSwichDelete: boolean;
 
+  swichBtnEdit: boolean;
+
   constructor(
     private ProductService: ProductService,
     private CategoryService: CategoryService,
     private afStorage: AngularFireStorage
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.adminJSONProduct();
@@ -68,7 +70,7 @@ export class AdminProductComponent implements OnInit {
     const filePath = `images/${name}.${type}`;
     const task = this.afStorage.upload(filePath, file);
     this.uploadProgress = task.percentageChanges();
-    task.then( image => {
+    task.then(image => {
       this.afStorage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
         this.productImage = url;
         this.imageStatus = true;
@@ -92,16 +94,25 @@ export class AdminProductComponent implements OnInit {
       this.ProductService.postJSONProduct(product).subscribe(
         () => { this.adminJSONProduct(); }
       );
-      this.productNameEN = '';
-      this.productNameUA = '';
-      this.productDescription = '';
-      this.productWeight = '';
-      this.productPrice = undefined;
-      this.modalAddSwich = !this.modalAddSwich;
+      this.reset()
     } else alert('Fill all fields');
   }
 
-  // видалення продукта
+  // --- онулення данних форми і закриття модалки ---
+  reset() {
+    this.categoryName = "choose category..";
+    this.productNameEN = '';
+    this.productNameUA = '';
+    this.productDescription = '';
+    this.productWeight = '';
+    this.productPrice = undefined;
+    this.productImage = undefined;
+    this.modalAddSwich = !this.modalAddSwich;
+    this.swichBtnEdit = false;
+  }
+  // ---------------------
+
+  // --- видалення продукта ---
   deleteCategory(product: IProduct): void {
     this.modalSwichDelete = !this.modalSwichDelete;
     this.productID = product.id;
@@ -112,6 +123,41 @@ export class AdminProductComponent implements OnInit {
       () => { this.adminJSONProduct(); }
     );
   }
+  // --------------------
+
+  // --- редагування ---
+  editProd(product: IProduct) {
+    this.modalAddSwich = !this.modalAddSwich;
+    this.productID = product.id;
+    this.categoryName = product.category.nameEN
+    this.productNameEN = product.nameEN;
+    this.productNameUA = product.nameUA;
+    this.productDescription = product.description;
+    this.productWeight = product.weight;
+    this.productPrice = product.price;
+    this.productImage = product.image;
+    this.swichBtnEdit = true;
+  }
+  saveEdit() {
+    if (this.productNameEN && this.productNameUA) {
+      const product: IProduct = new Product(
+        this.productID,
+        this.productCategory,
+        this.productNameEN,
+        this.productNameUA,
+        this.productDescription,
+        this.productWeight,
+        this.productPrice,
+        this.productImage);
+      this.ProductService.updateJSONProduct(product).subscribe(
+        () => { this.adminJSONProduct(); }
+      );
+      this.reset()
+    } else alert('Fill all fields');
+  }
+
+  // ----------------------
+
 
   // --- Сортування ---
   sort(value: string) {
@@ -119,18 +165,20 @@ export class AdminProductComponent implements OnInit {
       this.reverse = !this.reverse;
     }
     this.order = value;
-  } 
-  
-// --- модалки ---
+  }
+  // --------------------
+
+  // --- модалки ---
   openModal(): void {
     this.modalAddSwich = !this.modalAddSwich;
   }
   closeModal(): void {
-    this.modalAddSwich = !this.modalAddSwich;
+    this.reset();
   }
   closeDeleteModal(): void {
     this.modalSwichDelete = !this.modalSwichDelete;
   }
+  // -----------------
 
 
 }

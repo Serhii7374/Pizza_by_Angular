@@ -5,15 +5,25 @@ import { AdminblogComponent } from './admin/adminblog/adminblog.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdmincategoryComponent } from './admin/admincategory/admincategory.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
+import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
+import { ProductComponent } from './pages/product/product.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { HomeComponent } from './pages/home/home.component';
+import { BasketComponent } from './pages/basket/basket.component';
 
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'blog', component: BlogComponent },
+  { path: 'basket', component: BasketComponent },
+  { path: 'menu/:category', component: ProductComponent },
+  { path: 'menu/:category/:id', component: ProductDetailsComponent },
   { path: 'admin', component: AdminComponent, children: [
     { path: '', redirectTo: 'admin', pathMatch: 'full' },
     { path: 'blog', component: AdminblogComponent },
     { path: 'product', component: AdminProductComponent },
-    { path: 'category', component: AdmincategoryComponent }
+    { path: 'category', component: AdmincategoryComponent },
+    { path: 'order', component: AdminOrderComponent }
     ] },
 ];
 

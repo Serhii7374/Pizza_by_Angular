@@ -45,7 +45,7 @@ export class AdmincategoryComponent implements OnInit {
       this.modalAddSwich = !this.modalAddSwich;
     } else alert('Fill all fields');
   }
-
+  
   // видалення поста
   deleteCategory(category: ICategory): void {
     this.modalSwichDelete = !this.modalSwichDelete;

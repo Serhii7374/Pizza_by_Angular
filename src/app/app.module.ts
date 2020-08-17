@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +22,12 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { SortProductPipe } from './shared/pipes/sort-product.pipe';
+import { ProductComponent } from './pages/product/product.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { HomeComponent } from './pages/home/home.component';
+import { BasketComponent } from './pages/basket/basket.component';
+import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +40,19 @@ import { SortProductPipe } from './shared/pipes/sort-product.pipe';
     SearchPipe,
     SortPipe,
     SortProductPipe,
-    AdminProductComponent    
+    AdminProductComponent,
+    ProductComponent,
+    FooterComponent,
+    ProductDetailsComponent,
+    HomeComponent,
+    BasketComponent,
+    AdminOrderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,

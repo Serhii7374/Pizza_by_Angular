@@ -1,0 +1,140 @@
+<div class="wrapper">
+    <div class="center">
+        <div class="header">
+            <h2>Оформити замовлення</h2>
+        </div>
+        <div class="main">
+            <div class="left">
+                <h3>Оберіть спосіб доставки</h3>
+                <div class="pill__items">
+                    <input type="radio" name="pill" id="pill-1">
+                    <label (click)="swich(1)" class="pill__item" for="pill-1">Доставка</label>
+                    <input type="radio" name="pill" id="pill-2">
+                    <label (click)="swich(2)" class="pill__item" for="pill-2">Самовивіз</label>
+                    <input type="radio" name="pill" id="pill-3">
+                    <label (click)="swich(3)" class="pill__item" for="pill-3">Заздалегідь</label>
+                </div>
+                <form id="f1" name="f1" class="pill__body" #orderForm="ngForm" novalidate (submit)="addOrder(orderForm)">
+                    <div class="stat">
+                        <div class="wrapperInput">
+                            <input type="text" id="name" class="bodrerDecor" [(ngModel)]="userName" name="userName" required>
+                            <label for="name" [class.label]="userName">Ваше ім'я*</label>                            
+                            <div class="moon1"></div>
+                            <div class="moon2"></div>
+                            <div class="moon3"></div>
+                            <div class="moon4"></div>
+                        </div>
+                        <div class="wrapperInput">
+                            <input type="text" id="phone" class="bodrerDecor" [(ngModel)]="userPhone" name="userPhone" required>
+                            <label for="phone" [class.label]="userPhone">Телефон</label>                            
+                            <div class="moon1"></div>
+                            <div class="moon2"></div>
+                            <div class="moon3"></div>
+                            <div class="moon4"></div>
+                        </div>
+                        <div class="wrapperArea">
+                            <textarea id="text" [(ngModel)]="userComments" name="userComments"></textarea>
+                            <label for="text" [class.label]="userComments">Ваш коментар*</label>                            
+                            <div class="moon1"></div>
+                            <div class="moon2"></div>
+                            <div class="moon3"></div>
+                            <div class="moon4"></div>
+                        </div>
+                    </div>
+                    <div *ngIf="swichPill == 1" class="pill__block">
+                        <div class="wrapperInput">
+                            <input type="text" id="city" class="bodrerDecor" [(ngModel)]="userCity" name="userCity" required>
+                            <label for="city" [class.label]="userCity">Місто*</label>                            
+                            <div class="moon1"></div>
+                            <div class="moon2"></div>
+                            <div class="moon3"></div>
+                            <div class="moon4"></div>
+                        </div>
+                        <div class="wrapperInput">
+                            <input type="text" id="street" class="bodrerDecor" [(ngModel)]="userStreet" name="userStreet" required>
+                            <label for="street" [class.label]="userStreet">Вулиця*</label>                            
+                            <div class="moon1"></div>
+                            <div class="moon2"></div>
+                            <div class="moon3"></div>
+                            <div class="moon4"></div>
+                        </div>
+                        <div class="wrapperInput">
+                            <input type="text" id="house" class="bodrerDecor" [(ngModel)]="userHouse" name="userHouse" required>
+                            <label style="width: 130px;" for="house" [class.label]="userHouse">Номер будинку*</label>                            
+                            <div class="moon1"></div>
+                            <div class="moon2"></div>
+                            <div class="moon3"></div>
+                            <div class="moon4"></div>
+                        </div>
+                    </div>
+                    <div *ngIf="swichPill == 2" class="pill__block">
+                        <div class="wrapperInput">
+                            <input type="text" id="adress" class="bodrerDecor">
+                            <label style="width: 220px;" for="adress" class="label">Введіть адресу самовивозу</label>                            
+                            <div class="moon1"></div>
+                            <div class="moon2"></div>
+                            <div class="moon3"></div>
+                            <div class="moon4"></div>
+                        </div>
+                    </div>
+                    <div *ngIf="swichPill == 3" class="pill__block">
+                        <div class="wrapperInput">
+                            <input type="text" id="date" class="bodrerDecor">
+                            <label for="date" class="label">Дата</label>                            
+                            <div class="moon1"></div>
+                            <div class="moon2"></div>
+                            <div class="moon3"></div>
+                            <div class="moon4"></div>
+                        </div>
+                        <div class="wrapperInput">
+                            <input type="text" id="time" class="bodrerDecor">
+                            <label  style="width: 150px;" for="time" class="label">Часовий інтервал</label>                            
+                            <div class="moon1"></div>
+                            <div class="moon2"></div>
+                            <div class="moon3"></div>
+                            <div class="moon4"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="subm" [disabled]="orderForm.invalid" [class.disable]="orderForm.invalid"  >ОФОРМИТИ ЗАМОВЛЕННЯ</button>
+                    </div>
+                </form>
+            </div>
+            <div class="right">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Товар</th>
+                            <th>Ціна</th>
+                            <th>Кількість</th>
+                            <th>Загалом</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let o of order; index as i">
+                            <td><div class="close" (click)="deleteProduct(o)"></div></td>
+                            <td>
+                                <img [src]="o.image" alt="" style="width: 100px;height: 100px;margin-right: 20px;">
+                                <span> {{ o?.nameUA }} </span>
+                            </td>
+                            <td>{{ o?.price }} грн</td>
+                            <td>
+                                <div class="count">
+                                    <i class="fas fa-minus" (click)="productCount(o, false)"></i>
+                                    <input type="text" maxlength="3" [value]="o.count" readonly>
+                                    <i class="fas fa-plus" (click)="productCount(o, true)"></i>
+                                </div>
+                            </td>
+                            <td>{{ o?.price * o?.count }} грн</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td>Загалом: {{ totalPrice }} грн</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

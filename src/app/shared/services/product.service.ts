@@ -21,8 +21,20 @@ export class ProductService {
     return this.http.post<IProduct>(this.url, product);
   }
 
+  updateJSONProduct(product: IProduct): Observable<IProduct> {
+    return this.http.put<IProduct>(`${this.url}/${product.id}`, product);
+  }
+
   deleteJSONProduct(id: number): Observable<IProduct> {
     return this.http.delete<IProduct>(`${this.url}/${id}`);
+  }
+
+  getCategoryProduct(name: string): Observable<Array<IProduct>> {
+    return this.http.get<Array<IProduct>>(`${this.url}?category.nameEN=${name}`);
+  }
+
+  getOneProduct(id: number): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.url}/${id}`);
   }
 
 }

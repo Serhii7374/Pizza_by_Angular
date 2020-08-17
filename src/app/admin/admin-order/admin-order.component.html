@@ -1,0 +1,227 @@
+<div class="wrapper">
+    <header>
+        <h3>Orders</h3>
+    </header>
+    <main>
+        <div>
+            <input class="inpDecor" type="text" [(ngModel)]="SearchOrder" name="SearchOrder"
+                placeholder="filter product..">
+        </div>
+        <table class="userInfo">
+            <thead>
+                <tr>
+                    <th><span>№</span></th>
+                    <th><span>Name</span></th>
+                    <th><span>Phone</span></th>
+                    <th><span>City</span></th>
+                    <th><span>Street</span></th>
+                    <th><span>Date</span></th>
+                    <th><span>Status</span></th>
+                    <th><span>Details</span></th>
+                    <th><span>Delete</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let o of orders; let i=index">
+                    <td>{{ o.id }}</td>
+                    <td>{{ o.userName }}</td>
+                    <td>{{ o.userPhone }}</td>
+                    <td>{{ o.userCity }}</td>
+                    <td>{{ o.userStreet }}</td>
+                    <td>{{ o.dateOrder | date:'short' }}</td>
+                    <td [style.color]="o.status === 'ВІДМІНЕНО'?'red':o.status === 'ПОГОДЖЕНО'?'gold':o.status === 'ДОСТАВЛЕНО'?'green':'black'">{{ o.status }}</td>
+                    <td><input type="button" value="Details" class="btn-dark" (click)="orderDatails(o)"></td>
+                    <td><input type="button" value="Delete" class="btn-dark" (click)="deleteOrder(o)"></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+
+
+<!-- Modal Order DETAILS -->
+
+<ng-container *ngIf="modalDetailsSwich">
+    <div class="myModal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <span>Order model</span>
+                <span (click)="closeDetailsModal()">&times;</span>
+            </div>
+            <div class="modal__body">
+                <form>
+                    <div>
+                        <select class="inpDecor" [(ngModel)]="orderStatus" name="orderStatus" (change)="setStatus(orderStatus)">
+                            <option selected disabled>{{ orderStatus }}</option>
+                            <option value="ПОГОДЖЕНО">ПОГОДЖЕНО</option>
+                            <option value="ВІДМІНЕНО">ВІДМІНЕНО</option>
+                            <option value="ДОСТАВЛЕНО">ДОСТАВЛЕНО</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input class="inpDecor" type="text" [(ngModel)]="orderName" name="orderName"
+                            placeholder="name here..">
+                    </div>
+                    <div>
+                        <input class="inpDecor" type="text" [(ngModel)]="orderPhone" name="orderPhone"
+                            placeholder="phone here..">
+                    </div>
+                    <div>
+                        <input class="inpDecor" type="text" [(ngModel)]="orderCity" name="orderCity"
+                            placeholder="City here..">
+                    </div>
+                    <div>
+                        <input class="inpDecor" type="text" [(ngModel)]="orderStreet" name="orderStreet"
+                            placeholder="Street here..">
+                    </div>
+                    <div>
+                        <input class="inpDecor" type="text" [(ngModel)]="orderHouse" name="orderHouse"
+                            placeholder="House here..">
+                    </div>
+                    <div>
+                        <textarea [(ngModel)]="orderComment" name="productDescription"
+                            placeholder="comment here.."></textarea>
+                    </div>
+                </form>
+
+                <table class="productTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Товар</th>
+                            <th>Ціна</th>
+                            <th>Кількість</th>
+                            <th>Загалом</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let o of order; index as i">
+                            <td>
+                                <div class="close" (click)="deleteProduct(o)"></div>
+                            </td>
+                            <td>
+                                <span> {{ o?.nameUA }} </span>
+                            </td>
+                            <td>{{ o?.price }} грн</td>
+                            <td>
+                                <div class="count">
+                                    <i class="fas fa-minus" (click)="productCount(o, false)"></i>
+                                    <input type="text" maxlength="3" [value]="o.count" readonly>
+                                    <i class="fas fa-plus" (click)="productCount(o, true)"></i>
+                                </div>
+                            </td>
+                            <td>{{ o?.price * o?.count }} грн</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td><input class="btn-gray" style="width: 60px" type="button" value="Add"
+                                    (click)="addProduct()"></td>
+                            <td>Загалом: {{ totalPrice }} грн</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal__footer">
+                <input class="btn-gray" type="button" value="Close" (click)="closeDetailsModal()">
+                <input class="btn-gray" type="button" value="Save" (click)="saveOrder()">
+            </div>
+        </div>
+    </div>
+</ng-container>
+<!-- ---------------------------- -->
+
+<!-- модалка з добавленням продукту -->
+<ng-container *ngIf="modalAddSwich">
+    <div class="myModal3">
+        <div class="modal__content3">
+            <div class="modal__header">
+                <span>Add product to order</span>
+                <span (click)="closeAddModal()">&times;</span>
+            </div>
+            <div class="modal__body3">
+                <div>
+                    <input class="inpDecor" type="text" [(ngModel)]="SearchProduct" name="SearchProduct"
+                        placeholder="filter product..">
+                </div>
+                <table class="addProduct">
+                    <thead>
+                        <tr>
+                            <th><span (click)='sort("category.nameEN")'>Category Name
+                                    <span [class.activeArrow]="sortValue === 'category.nameEN'">
+                                        <i *ngIf="reverse" class="fa fa-sort-asc hidden"></i>
+                                        <i *ngIf="!reverse" class="fa fa-caret-down hidden"></i>
+                                    </span>
+                                </span>
+                            </th>
+                            <th><span (click)='sort("nameEN")'>Name EN
+                                    <span [class.activeArrow]="sortValue === 'nameEN'">
+                                        <i *ngIf="reverse" class="fa fa-sort-asc hidden"></i>
+                                        <i *ngIf="!reverse" class="fa fa-caret-down hidden"></i>
+                                    </span>
+                                </span>
+                            </th>
+                            <th><span (click)='sort("nameUA")'>Name UA
+                                    <span [class.activeArrow]="sortValue === 'nameUA'">
+                                        <i *ngIf="reverse" class="fa fa-sort-asc hidden"></i>
+                                        <i *ngIf="!reverse" class="fa fa-caret-down hidden"></i>
+                                    </span>
+                                </span>
+                            </th>
+                            <th>
+                                <span>Description</span>
+                            </th>
+                            <th><span (click)='sort("weight")'>Weight
+                                    <span [class.activeArrow]="sortValue === 'weight'">
+                                        <i *ngIf="reverse" class="fa fa-sort-asc hidden"></i>
+                                        <i *ngIf="!reverse" class="fa fa-caret-down hidden"></i>
+                                    </span>
+                                </span>
+                            </th>
+                            <th><span (click)='sort("price")'>Price
+                                    <span [class.activeArrow]="sortValue === 'price'">
+                                        <i *ngIf="reverse" class="fa fa-sort-asc hidden"></i>
+                                        <i *ngIf="!reverse" class="fa fa-caret-down hidden"></i>
+                                    </span>
+                                </span>
+                            </th>
+                            <th>Add</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of product | search:SearchProduct | sortProduct:sortValue:reverse; let i=index">
+                            <td>{{ p.category.nameEN }}</td>
+                            <td>{{ p.nameEN }}</td>
+                            <td>{{ p.nameUA }}</td>
+                            <td>{{ p.description }}</td>
+                            <td>{{ p.weight }}</td>
+                            <td>{{ p.price }}</td>
+                            <td>
+                                <input type="button" class="btn-dark" value="Add" (click)="addProdToOrder(p)">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="modal__footer3">
+                <input class="btn-gray" type="button" value="Close" (click)="closeAddModal()">
+                <input class="btn-gray" *ngIf="!swichBtnEdit" type="button" value="Add" (click)="deleteOrder()">
+                <input class="btn-gray" *ngIf="swichBtnEdit" type="button" value="Save" (click)="saveEdit()">
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<!-- модалка видалення продукту -->
+
+<ng-container *ngIf="modalSwichDelete">
+    <div class="myModal2">
+        <div class="modal__content2">
+            <div class="modal__body2">
+                <input type="button" value="Dismiss" class="btn-dark" (click)="closeDeleteModal()">
+                <input type="button" value="Delete" class="btn-dark" (click)="delete()">
+            </div>
+        </div>
+    </div>
+</ng-container>

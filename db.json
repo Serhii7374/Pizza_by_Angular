@@ -1,18 +1,11 @@
 {
   "blogs": [
     {
-      "id": 13,
-      "title": "Title 1",
-      "text": "some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text some text",
-      "date": "2020-08-04T18:03:03.964Z",
-      "author": "Serhii Ivanytskyi"
-    },
-    {
-      "title": "news",
-      "text": "Акція 1+1=0",
-      "date": "2020-07-29T14:24:18.999Z",
-      "author": "жмот",
-      "id": 14
+      "id": 14,
+      "title": "Акція",
+      "text": "Приведи подругу і лиши в нас гроші",
+      "date": "2020-08-06T17:49:03.653Z",
+      "author": "Admin"
     }
   ],
   "categories": [
@@ -22,45 +15,167 @@
       "id": 1
     },
     {
-      "nameEN": "alcohol",
-      "nameUA": "бухло",
-      "id": 2
-    },
-    {
       "nameEN": "pizza",
       "nameUA": "піца",
       "id": 3
+    },
+    {
+      "nameEN": "drinks",
+      "nameUA": "Напої",
+      "id": 4
     }
   ],
   "products": [
+    {
+      "id": 4,
+      "category": {
+        "id": 1,
+        "nameEN": "pizza",
+        "nameUA": "піца"
+      },
+      "nameEN": "pizza",
+      "nameUA": "Діабола",
+      "description": "соус томатний, сир моцарела, перець чилі, ковбаса пепероні.",
+      "weight": "500",
+      "price": "130",
+      "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Flapiec-1.jpeg?alt=media&token=61a6cfe4-941b-4881-9122-1718a3f5a22e",
+      "count": 1
+    },
     {
       "category": {
         "nameEN": "salad",
         "nameUA": "салат",
         "id": 1
       },
-      "nameEN": "test",
-      "nameUA": "test",
-      "description": "test",
-      "weight": "100 gr",
-      "price": "100",
+      "nameEN": "salmone",
+      "nameUA": "Інсалата ді Сальмоне",
+      "description": "рукола, помідор чері, огірок, салат айсберг, соус айолі, пармезан, лосось, перепелине яйце, кунжут.",
+      "weight": "250",
+      "price": "130",
+      "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fprimavera-big-1.jpeg?alt=media&token=67498017-4b00-4b16-934d-c349c7c2579e",
       "count": 1,
-      "id": 1
+      "id": 5
     },
     {
       "category": {
-        "nameEN": "alcohol",
-        "nameUA": "бухло",
-        "id": 2
+        "nameEN": "drinks",
+        "nameUA": "Напої",
+        "id": 4
       },
-      "nameEN": "beer",
-      "nameUA": "пиво",
-      "description": "\"балтика 7\", 0,5 л",
+      "nameEN": "cola",
+      "nameUA": "кола",
+      "description": "Кока-кола ",
       "weight": "0,5 л",
       "price": "20",
-      "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fpizza3.png?alt=media&token=aef39bed-f841-4a2d-82d7-b51cff68cecb",
+      "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fcola0.5.jpeg?alt=media&token=80932073-fbea-486a-9138-bb8a8f0d8a1b",
       "count": 1,
-      "id": 3
+      "id": 6
+    },
+    {
+      "category": {
+        "id": 1,
+        "nameEN": "pizza",
+        "nameUA": "піца"
+      },
+      "nameEN": "tsezar",
+      "nameUA": "Цезаріо",
+      "description": "соус вершковий, помідори, хрусткий салат, пармезан, куряче м'ясо, сир моцарела, перепелині яйця.",
+      "weight": "600 гр.",
+      "price": "195",
+      "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Ftsezario-1.png?alt=media&token=99207caa-c971-4b56-8b7d-c940ce8f90f7",
+      "count": 1,
+      "id": 7
+    },
+    {
+      "id": 8,
+      "category": {
+        "nameEN": "salad",
+        "nameUA": "салат",
+        "id": 1
+      },
+      "nameEN": "cezar",
+      "nameUA": "Салат Цезар з телятиною",
+      "description": "Салат айсберг, помідори, телятина , сир пармезан, перепелині яйця, духмяні сухарики та фірмова заправка.",
+      "weight": "250 гр.",
+      "price": "163",
+      "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fcezar-z-telyatynoyu-big_2.jpeg?alt=media&token=7fccbda6-dff5-4ab9-8e69-65922a94a312",
+      "count": 1
+    },
+    {
+      "id": 9,
+      "category": {
+        "nameEN": "drinks",
+        "nameUA": "Напої",
+        "id": 4
+      },
+      "nameEN": "BonAqua",
+      "nameUA": "Вода",
+      "description": "Вода BonAqua — 1 л",
+      "weight": "1 л",
+      "price": "21",
+      "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fvoda-bonaqua-05.jpeg?alt=media&token=08e27ce1-693d-46d1-9f58-23e57da6b85f",
+      "count": 1
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "userName": "serg",
+      "userPhone": "123456789",
+      "userCity": "lviv",
+      "userStreet": "kruta",
+      "userHouse": "13",
+      "ordersDetails": [
+        {
+          "category": {
+            "nameEN": "salad",
+            "nameUA": "салат",
+            "id": 1
+          },
+          "nameEN": "salmone",
+          "nameUA": "Інсалата ді Сальмоне",
+          "description": "рукола, помідор чері, огірок, салат айсберг, соус айолі, пармезан, лосось, перепелине яйце, кунжут.",
+          "weight": "250",
+          "price": "130",
+          "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fprimavera-big-1.jpeg?alt=media&token=67498017-4b00-4b16-934d-c349c7c2579e",
+          "count": 1,
+          "id": 5
+        },
+        {
+          "category": {
+            "nameEN": "drinks",
+            "nameUA": "Напої",
+            "id": 4
+          },
+          "nameEN": "cola",
+          "nameUA": "кола",
+          "description": "Кока-кола ",
+          "weight": "0,5 л",
+          "price": "20",
+          "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fcola0.5.jpeg?alt=media&token=80932073-fbea-486a-9138-bb8a8f0d8a1b",
+          "count": 1,
+          "id": 6
+        },
+        {
+          "id": 8,
+          "category": {
+            "nameEN": "salad",
+            "nameUA": "салат",
+            "id": 1
+          },
+          "nameEN": "cezar",
+          "nameUA": "Салат Цезар з телятиною",
+          "description": "Салат айсберг, помідори, телятина , сир пармезан, перепелині яйця, духмяні сухарики та фірмова заправка.",
+          "weight": "250 гр.",
+          "price": "163",
+          "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fcezar-z-telyatynoyu-big_2.jpeg?alt=media&token=7fccbda6-dff5-4ab9-8e69-65922a94a312",
+          "count": 1
+        }
+      ],
+      "totalPayment": 313,
+      "dateOrder": "2020-08-13T13:08:36.994Z",
+      "userComment": "comment",
+      "status": "ВІДМІНЕНО"
     }
   ]
 }

@@ -5,7 +5,7 @@
     </header>
     <main>
         <div>
-            <input type="text" [(ngModel)]="SearchText" name="SearchText" placeholder="filter product..">
+            <input class="inpDecor" type="text" [(ngModel)]="SearchText" name="SearchText" placeholder="filter product..">
         </div>
         <table>
             <thead>
@@ -69,7 +69,7 @@
                     <td>{{ p.weight }}</td>
                     <td>{{ p.price }}</td>
                     <td>
-                        <input type="button" class="btn-dark" value="Edit" (click)="deleteCategory(p)">
+                        <input type="button" class="btn-dark" value="Edit" (click)="editProd(p)">
                     </td>
                     <td>
                         <input type="button" class="btn-dark" value="Delete" (click)="deleteCategory(p)">
@@ -93,18 +93,19 @@
             <div class="modal__body">
                 <form>
                     <div>
-                        <select [(ngModel)]="categoryName" name="categoryName" (change)="setCategory()">
+                        <select class="inpDecor" [(ngModel)]="categoryName" name="categoryName" (change)="setCategory()">
+                            <option value="choose category.." disabled>choose category..</option>
                             <option *ngFor="let category of categories">
                                 {{ category.nameEN }}
                             </option>
                         </select>
                     </div>
                     <div>
-                        <input type="text" [(ngModel)]="productNameEN" name="productNameEN"
+                        <input class="inpDecor" type="text" [(ngModel)]="productNameEN" name="productNameEN"
                             placeholder="name EN here..">
                     </div>
                     <div>
-                        <input type="text" [(ngModel)]="productNameUA" name="productNameUA"
+                        <input class="inpDecor" type="text" [(ngModel)]="productNameUA" name="productNameUA"
                             placeholder="name UA here..">
                     </div>
                     <div>
@@ -112,23 +113,27 @@
                             placeholder="description here.."></textarea>
                     </div>
                     <div>
-                        <input type="text" [(ngModel)]="productWeight" name="productWeight" placeholder="weight here..">
+                        <input class="inpDecor" type="text" [(ngModel)]="productWeight" name="productWeight" placeholder="weight here..">
                     </div>
                     <div>
-                        <input type="text" [(ngModel)]="productPrice" name="productPrice" placeholder="price here..">
+                        <input class="inpDecor" type="text" [(ngModel)]="productPrice" name="productPrice" placeholder="price here..">
                     </div>
                 </form>
                 <div class="fileBox">
-                    <label for="file">
-                        <div>choose image</div>                        
-                        <input (change)="uploadFile($event)" type="file" id="file">
-                    </label>                    
+                    <div class="progres">
+                        <div [style.width]="(uploadProgress | async) + '%'"></div>
+                    </div>
+                    <label>
+                        <div>choose image..</div>
+                        <input (change)="uploadFile($event)" type="file">
+                    </label>
                     <img [src]="productImage" alt="" style="width: 200px; max-height: 200px;">
                 </div>
             </div>
             <div class="modal__footer">
                 <input type="button" value="Close" (click)="closeModal()">
-                <input type="button" value="Add" (click)="addCategory()">
+                <input *ngIf="!swichBtnEdit" type="button" value="Add" (click)="addCategory()">
+                <input *ngIf="swichBtnEdit" type="button" value="Save" (click)="saveEdit()">
             </div>
         </div>
     </div>

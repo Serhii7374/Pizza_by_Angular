@@ -1,0 +1,111 @@
+.wrapper {
+    width: 100%;
+    min-height: 600px;
+}
+.main {
+    width: 1050px;
+    height: 100%;
+    margin: 0 auto;
+}
+.breadcrumb {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    & span{
+        margin-right: 5px;
+        &:hover{
+            cursor: pointer;
+            color: red;
+        }
+    }
+}
+.main__product {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: space-between;
+    & .main__img {
+        width: 500px;
+        height: 500px;
+        & img {
+            width: 500px;
+            height: 500px;
+        }
+    }
+    & .main__details {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+.details__discriptions {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    & .name{
+        text-align: center;
+        font-size: 40px;
+    }
+    & .other{
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+
+.details__order {
+    height: 200px;
+    border-top: 1px solid silver;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    & div:nth-of-type(2) {
+        width: 200px;
+        color: red;
+        font-size: 20px;
+        & span {
+            color: black;
+        }
+    }
+    & div:nth-of-type(1) {
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & input {
+            padding: 0;
+            height: 40px;
+            width: 40px;
+            text-align: center;
+            font-size: 18px;
+        }
+        & i {
+            color: red;
+            transition: ease 0.5s;
+            &:hover {
+                cursor: pointer;
+                color: black;
+            }
+        }
+    }
+    & div:nth-of-type(3) {
+        width: 120px;
+        height: 40px;
+        border-radius: 30px;
+        background-color: red;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: ease 0.5s;
+        &:hover {
+            background-color: white;
+            color: red;
+            border: 1px solid red;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,104 @@
+.wrapper {
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0 auto;
+}
+
+.top {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+.blog {
+    width: 500px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 1% 1% 1%;
+    & .blog__img {
+        width: 100%;
+        height: 500px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: steelblue;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    & .blog__name {
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        transition: ease 0.4s;
+        &:hover{
+            cursor: pointer;
+            color: red;
+        }
+    }
+    & .blog__description {
+        text-align: center;
+    }
+    & .blog__footer {
+        height: 100px;
+        border-top: 1px solid silver;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        & div:nth-of-type(1) {
+            width: 100px;
+            color: red;
+            font-size: 20px;
+            & span {
+                color: black;
+            }
+        }
+        & div:nth-of-type(2) {
+            width: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & input {
+                padding: 0;
+                height: 40px;
+                width: 40px;
+                text-align: center;
+                font-size: 18px;
+            }
+            & i {
+                color: red;
+                transition: ease 0.5s;                
+                &:hover {
+                    cursor: pointer;
+                    color: black;
+                }
+            }
+        }
+
+
+        & div:nth-of-type(3) {
+            width: 100px;
+            height: 30px;
+            border-radius: 30px;
+            background-color: red;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: ease 0.5s;
+            &:hover {
+                background-color: white;
+                color: red;
+                border: 1px solid red;
+                cursor: pointer;
+            }
+        }
+    }
+}

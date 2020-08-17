@@ -2,11 +2,19 @@
     <h1>Pizza</h1>
     <nav>
         <ul>
-            <li>Home</li>
-            <li>product</li>
-            <li routerLink="blog" routerLinkActive="active">blog</li>
-            <li>about</li>
-            <li routerLink="admin" routerLinkActive="active">admin</li>
+            <li routerLink="home" routerLinkActive="active">Головна</li>
+            <li routerLink="/menu/pizza" routerLinkActive="active">Піца</li>
+            <li routerLink="/menu/salad" routerLinkActive="active">Салати</li>
+            <li routerLink="/menu/drinks" routerLinkActive="active">Напої</li>            
+            <li routerLink="blog" routerLinkActive="active">Акції</li>
+            <li>Про нас</li>            
         </ul>
+        <div class="admin">
+            <div routerLink="basket" routerLinkActive="active">
+                <i class="fas fa-shopping-cart"></i>
+                {{ totalPrice }} грн
+            </div>
+            <div routerLink="admin" routerLinkActive="active"><i class="fas fa-user-cog"></i></div>   
+        </div>     
     </nav>
 </header>

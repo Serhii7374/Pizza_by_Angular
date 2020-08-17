@@ -6,7 +6,7 @@ import { IProduct } from '../interfaces/product.interface';
 })
 export class SortProductPipe implements PipeTransform {
 
-  transform(p: Array<IProduct>, order: string, reverse: boolean): unknown {
+  transform(p: Array<IProduct>, order: string, reverse: boolean): Array<IProduct> {
     if (order === "id" && !reverse) {
       return p.sort((a, b) => a.id - b.id);
     } else if (order === "id" && reverse) {
@@ -37,6 +37,7 @@ export class SortProductPipe implements PipeTransform {
     } else if (order === "price" && reverse) {
       return p.sort((a, b) => b.price - a.price);
     };
+    
   }
 
 }

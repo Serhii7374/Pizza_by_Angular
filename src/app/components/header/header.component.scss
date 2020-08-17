@@ -5,25 +5,50 @@ header {
     display: flex;
     align-items: center;
     & h1 {
+        width: 100px;
         color: white;
         margin: 0 10px 0 20px;
         user-select: none;
     }
     & nav {
+        height: 100%;
+        width: calc(100% - 100px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 auto;
         color: lightgrey;
     }
 }
-li{
+li {
     display: inline;
     margin: 0 10px;
     font-size: 18px;
     outline: none;
-    &:hover{
+    &:hover {
         cursor: pointer;
         color: white;
     }
 }
 
-.active{    
+.admin {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 50px;
+    & div {
+        outline: none;
+        display: flex;
+        flex-direction: column;
+        &:hover {
+            cursor: pointer;
+            color: white;
+        }
+    }
+}
+
+.active {
     color: white;
 }

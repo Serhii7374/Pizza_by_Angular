@@ -6,22 +6,20 @@ import { ICategory } from '../../shared/interfaces/category.interface';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(cat: Array<ICategory>, order: string, reverse: boolean): unknown {
-    if (order === "nameEN" && !reverse) {
-      return cat.sort((a, b) => a.nameEN.toLowerCase() < b.nameEN.toLowerCase() ? -1 : 1);
-    } else if (order === "nameEN" && reverse) {
-      return cat.sort((a, b) => a.nameEN.toLowerCase() < b.nameEN.toLowerCase() ? -1 : 1).reverse();
+  transform(value: Array<ICategory>, order: string, reverse: boolean): Array<ICategory> {
+    if (order !== "id" && !reverse) {
+      return value.sort((a, b) => a[order].toLowerCase() < b[order].toLowerCase() ? -1 : 1);
+    } else if (order !== "id" && reverse) {
+      return value.sort((a, b) => a[order].toLowerCase() < b[order].toLowerCase() ? -1 : 1).reverse();
     };
-    if (order === "nameUA" && !reverse) {
-      return cat.sort((a, b) => a.nameUA.toLowerCase() < b.nameUA.toLowerCase() ? -1 : 1);
-    } else if (order === "nameUA" && reverse) {
-      return cat.sort((a, b) => a.nameUA.toLowerCase() < b.nameUA.toLowerCase() ? -1 : 1).reverse();
-    };
-    if (order === "id" && !reverse) {
-      return cat.sort((a, b) => a.id < b.id ? -1 : 1);
-    } else if (order === "id" && reverse) {
-      return cat.sort((a, b) => a.id < b.id ? -1 : 1).reverse();
-    };
-  }
 
+    if (order === "id" && !reverse) {
+      return value.sort((a, b) => a.id < b.id ? -1 : 1);
+    } else if (order === "id" && reverse) {
+      return value.sort((a, b) => a.id < b.id ? -1 : 1).reverse();
+    };
+
+
+
+  }
 }

@@ -1,0 +1,44 @@
+<div class="wrapper">
+    <div class="main">
+        <div class="breadcrumb">
+            <span routerLink="/home">Головна -</span>
+            <span [routerLink]="[ '/menu', product?.category.nameEN ]">{{ product?.category?.nameUA | titlecase }}</span>
+            <span>- {{ product?.nameUA | titlecase }}</span>
+        </div>
+        <div class="main__product">
+            <div class="main__img">
+                <img class="productDetail" [src]="product?.image" alt="product?.nameUA">
+            </div>
+            <div class="main__details">
+
+                <div class="details__discriptions">
+                    <div class="name">{{ product?.nameUA }}</div>
+                    <div class="discriptions">{{ product?.description }}</div>
+                    <div class="other">
+                        <span *ngIf="category !== 'drinks'">Розмір: <b>30 см</b></span>
+                        <ng-container *ngIf="category == 'drinks'; else elseTemplate">
+                            <span>Об'єм: <b>{{ product.weight }}</b></span>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            <span>Вага: <b>{{ product.weight }}</b></span>
+                        </ng-template>
+                    </div>
+                </div>
+
+                <div class="details__order">
+                    <div class="count">Кількість: 
+                        <i class="fas fa-minus" (click)="countMinus()"></i>
+                        <input type="text" maxlength="3" [value]="product.count" readonly>
+                        <i class="fas fa-plus" (click)="countPlus()"></i>
+                    </div>
+                    <div>
+                        <span>Загалом: </span>
+                        {{ product.price * product.count }}
+                        <span> грн.</span>
+                    </div>
+                    <div (click)="addBasket(product)">Замовити</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

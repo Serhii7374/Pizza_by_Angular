@@ -66,12 +66,12 @@ th {
         padding-left: 10px;
     }
     &:nth-of-type(4) {
+        padding-left: 10px;
         width: 100px;
-        text-align: center;
     }
     &:nth-of-type(5) {
+        padding-left: 10px;
         width: 50%;
-        text-align: center;
     }
     &:nth-of-type(6) {
         width: 100px;
@@ -108,10 +108,10 @@ td {
         padding-left: 10px;
     }
     &:nth-of-type(4) {
-        text-align: center;
+        padding-left: 10px;
     }
     &:nth-of-type(5) {
-        text-align: center;
+        padding-left: 10px;
     }
     &:nth-of-type(6) {
         text-align: center;
@@ -126,7 +126,6 @@ td {
         text-align: center;
     }
 }
-
 
 // ---- MODAL Add Product-----
 .myModal {
@@ -195,6 +194,7 @@ td {
         flex-direction: column;
         margin-bottom: 20px;
         & div {
+            position: relative;
             width: 100%;
         }
         & textarea {
@@ -213,16 +213,23 @@ td {
         & select {
             width: 100%;
             padding-left: 10px;
+            position: relative;
+            z-index: 3;
         }
     }
 }
+
 .fileBox {
     width: 100%;
     min-height: 40px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;        
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
     & label {
+        position: relative;
+        z-index: 2;
         & div {
             min-height: 40px;
             width: 150px;
@@ -231,13 +238,30 @@ td {
             display: flex;
             justify-content: center;
             align-items: center;
-            &:hover{
+            &:hover {
+                box-shadow: 0px 0px 4px 0px gray;
+                border: 0;
                 cursor: pointer;
             }
         }
         & input {
             display: none;
         }
+    }
+}
+
+.progres{
+    position: absolute;
+    min-height: 40px;
+    width: 150px;  
+    z-index: 2;
+    & div{        
+        position: absolute;
+        height: 100%;
+        width: 0;
+        background-color: springgreen;
+        z-index: 2;
+        border-radius: 5px;   
     }
 }
 
@@ -264,7 +288,7 @@ td {
         width: 60px;
         margin-right: 10px;
     }
-    & input[value="Add"] {
+    & input[value="Add"], input[value="Save"] {
         width: 50px;
     }
 }

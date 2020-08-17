@@ -1,7 +1,7 @@
 <form>
-    <input type="text" [(ngModel)]="title" name="title" placeholder="title here..">
+    <input class="inpDecor" type="text" [(ngModel)]="title" name="title" placeholder="title here..">
     <textarea [(ngModel)]="text" name="text" placeholder="text here.."></textarea>
-    <input type="text" [(ngModel)]="author" name="author" placeholder="author here..">
+    <input class="inpDecor" type="text" [(ngModel)]="author" name="author" placeholder="author here..">
     <ng-container *ngIf="!swichEdit; else save">
         <input type="button" class="btn-dark" value="Add" (click)="addBlog()">
     </ng-container>    
