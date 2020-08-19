@@ -28,6 +28,7 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
 import { HomeComponent } from './pages/home/home.component';
 import { BasketComponent } from './pages/basket/basket.component';
 import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
     ProductDetailsComponent,
     HomeComponent,
     BasketComponent,
-    AdminOrderComponent
+    AdminOrderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

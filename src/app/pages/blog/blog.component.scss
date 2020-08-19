@@ -1,5 +1,9 @@
 .wrapper{
     width: 100%;
+    height: calc(100% - 140px);
+}
+.container{
+    width: 100%;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;

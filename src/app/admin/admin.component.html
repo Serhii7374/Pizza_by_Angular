@@ -5,6 +5,7 @@
             <div class="pill__item" [routerLink]="[ 'product' ]" routerLinkActive="active">Product</div>
             <div class="pill__item" [routerLink]="[ 'blog' ]" routerLinkActive="active">Discounts</div>
             <div class="pill__item" [routerLink]="[ 'order' ]" routerLinkActive="active">Orders</div>
+            <button class="btn-dark" (click)="signOut()">Sign Out</button>
         </nav>
         <div class="pill__body">
             <router-outlet></router-outlet>

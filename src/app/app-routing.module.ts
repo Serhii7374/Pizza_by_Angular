@@ -10,6 +10,8 @@ import { ProductComponent } from './pages/product/product.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BasketComponent } from './pages/basket/basket.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 
 const routes: Routes = [
@@ -18,7 +20,8 @@ const routes: Routes = [
   { path: 'basket', component: BasketComponent },
   { path: 'menu/:category', component: ProductComponent },
   { path: 'menu/:category/:id', component: ProductDetailsComponent },
-  { path: 'admin', component: AdminComponent, children: [
+  { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], children: [
     { path: '', redirectTo: 'admin', pathMatch: 'full' },
     { path: 'blog', component: AdminblogComponent },
     { path: 'product', component: AdminProductComponent },

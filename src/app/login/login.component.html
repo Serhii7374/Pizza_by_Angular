@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <div class="container">
+        <form [formGroup]="loginForm" novalidate (ngSubmit)="submit()">
+            <div>
+                <label for="email">Email</label>
+                <input class="inpDecor" type="text" id="email" formControlName="userEmail"
+                    placeholder="enter your email..">
+                <div *ngIf="loginForm.controls['userEmail'].invalid && loginForm.controls['userEmail'].touched">
+                    перевір пошту
+                </div>
+            </div>
+            <div>
+                <label for="pass">Password</label>
+                <input class="inpDecor" type="text" id="pass" formControlName="userPassword"
+                    placeholder="enter your password..">
+            </div>
+            <button type="submit" class="btn-gray">Submit</button>
+        </form>
+    </div>
+</div>
