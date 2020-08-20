@@ -30,6 +30,9 @@ import { BasketComponent } from './pages/basket/basket.component';
 import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
 import { LoginComponent } from './login/login.component';
 
+import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
+import { loaderConfig } from './preloader-config';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +63,8 @@ import { LoginComponent } from './login/login.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
+    NgxUiLoaderModule.forRoot(loaderConfig),
+    NgxUiLoaderRouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

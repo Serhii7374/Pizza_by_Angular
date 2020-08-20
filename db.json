@@ -115,6 +115,36 @@
       "price": "21",
       "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fvoda-bonaqua-05.jpeg?alt=media&token=08e27ce1-693d-46d1-9f58-23e57da6b85f",
       "count": 1
+    },
+    {
+      "category": {
+        "nameEN": "pizza",
+        "nameUA": "піца",
+        "id": 3
+      },
+      "nameEN": "margaryta",
+      "nameUA": "Маргарита",
+      "description": "соус томатный, сыр моцарелла, помидоры.",
+      "weight": "420 гр.",
+      "price": "109",
+      "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fmargaryta-big.jpeg?alt=media&token=8df0868e-5a5b-4d3a-b50a-976c28ae35ca",
+      "count": 1,
+      "id": 10
+    },
+    {
+      "category": {
+        "nameEN": "pizza",
+        "nameUA": "піца",
+        "id": 3
+      },
+      "nameEN": "Polo",
+      "nameUA": "Поло",
+      "description": "сыр моцарелла, лук, майонез, помидоры, куриное мясо.",
+      "weight": "450 гр.",
+      "price": "144",
+      "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Flapiec-1.jpeg?alt=media&token=ce6c3930-63c3-475c-a5bd-f8327155452c",
+      "count": 1,
+      "id": 11
     }
   ],
   "orders": [
@@ -142,21 +172,6 @@
           "id": 5
         },
         {
-          "category": {
-            "nameEN": "drinks",
-            "nameUA": "Напої",
-            "id": 4
-          },
-          "nameEN": "cola",
-          "nameUA": "кола",
-          "description": "Кока-кола ",
-          "weight": "0,5 л",
-          "price": "20",
-          "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fcola0.5.jpeg?alt=media&token=80932073-fbea-486a-9138-bb8a8f0d8a1b",
-          "count": 1,
-          "id": 6
-        },
-        {
           "id": 8,
           "category": {
             "nameEN": "salad",
@@ -170,9 +185,39 @@
           "price": "163",
           "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fcezar-z-telyatynoyu-big_2.jpeg?alt=media&token=7fccbda6-dff5-4ab9-8e69-65922a94a312",
           "count": 1
+        },
+        {
+          "category": {
+            "nameEN": "pizza",
+            "nameUA": "піца",
+            "id": 3
+          },
+          "nameEN": "Polo",
+          "nameUA": "Поло",
+          "description": "сыр моцарелла, лук, майонез, помидоры, куриное мясо.",
+          "weight": "450 гр.",
+          "price": "144",
+          "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Flapiec-1.jpeg?alt=media&token=ce6c3930-63c3-475c-a5bd-f8327155452c",
+          "count": 1,
+          "id": 11
+        },
+        {
+          "category": {
+            "nameEN": "drinks",
+            "nameUA": "Напої",
+            "id": 4
+          },
+          "nameEN": "cola",
+          "nameUA": "кола",
+          "description": "Кока-кола ",
+          "weight": "0,5 л",
+          "price": "20",
+          "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fcola0.5.jpeg?alt=media&token=80932073-fbea-486a-9138-bb8a8f0d8a1b",
+          "count": 1,
+          "id": 6
         }
       ],
-      "totalPayment": 313,
+      "totalPayment": 457,
       "dateOrder": "2020-08-13T13:08:36.994Z",
       "userComment": "comment",
       "status": "ВІДМІНЕНО"

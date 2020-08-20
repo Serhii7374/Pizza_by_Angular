@@ -1,22 +1,25 @@
 <div class="wrapper">
-    <div class="top">
-        <h2>{{ category | titlecase }}</h2>
-    </div>
-    <div class="blog" *ngFor="let p of userProduct; let i = index">
-        <div [routerLink]="[ '/menu/'+p.category.nameEN, p.id ]" class="blog__img" [style.backgroundImage]="'url('+p.image+')'"></div>
+    <div class="container">
+        <div class="top">
+            <h2>{{ category | titlecase }}</h2>
+        </div>
+        <div class="blog" *ngFor="let p of userProduct; let i = index">
+            <div [routerLink]="[ '/menu/'+p.category.nameEN, p.id ]" class="blog__img"
+                [style.backgroundImage]="'url('+p.image+')'"></div>
 
-        <div [routerLink]="[ '/menu/'+p.category.nameEN, p.id ]" class="blog__name">{{ p.nameUA }}</div>
+            <div [routerLink]="[ '/menu/'+p.category.nameEN, p.id ]" class="blog__name">{{ p.nameUA }}</div>
 
-        <div class="blog__description">{{ p.description }}</div>
+            <div class="blog__description">{{ p.description }}</div>
 
-        <div class="blog__footer">
-            <div>{{ p.price * p.count }} <span> грн.</span></div>
-            <div class="count">
-                <i class="fas fa-minus" (click)="countMinus(p)"></i>
-                <input type="text" maxlength="3" [value]="p.count" readonly>
-                <i class="fas fa-plus" (click)="countPlus(p)"></i>
+            <div class="blog__footer">
+                <div>{{ p.price * p.count }} <span> грн.</span></div>
+                <div class="count">
+                    <i class="fas fa-minus" (click)="countMinus(p)"></i>
+                    <input type="text" maxlength="3" [value]="p.count" readonly>
+                    <i class="fas fa-plus" (click)="countPlus(p)"></i>
+                </div>
+                <div (click)="addBasket(p)">Замовити</div>
             </div>
-            <div (click)="addBasket(p)">Замовити</div>
         </div>
     </div>
 </div>
