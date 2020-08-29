@@ -7,11 +7,11 @@ import { IProduct } from '../interfaces/product.interface';
 export class SortProductPipe implements PipeTransform {
 
   transform(p: Array<IProduct>, order: string, reverse: boolean): Array<IProduct> {
-    if (order === "id" && !reverse) {
-      return p.sort((a, b) => a.id - b.id);
-    } else if (order === "id" && reverse) {
-      return p.sort((a, b) => b.id - a.id);
-    };
+    // if (order === "id" && !reverse) {
+    //   return p.sort((a, b) => a.id - b.id);
+    // } else if (order === "id" && reverse) {
+    //   return p.sort((a, b) => b.id - a.id);
+    // };
     if (order === "category.nameEN" && !reverse) {
       return p.sort((a, b) => a.category.nameEN.toLowerCase() < b.category.nameEN.toLowerCase() ? -1 : 1);
     } else if (order === "category.nameEN" && reverse) {

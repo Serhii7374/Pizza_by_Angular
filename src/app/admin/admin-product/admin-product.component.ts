@@ -15,11 +15,11 @@ import { Observable } from 'rxjs';
 export class AdminProductComponent implements OnInit {
   product: Array<IProduct> = [];
   SearchText: string;
-  productID = 1;
+  productID = '1';
 
   categories: Array<ICategory> = [];
   categoryName = "choose category..";
-  productCategory: ICategory = { id: 1, nameEN: 'pizza', nameUA: 'піца' };
+  productCategory: ICategory = { id: "1", nameEN: 'pizza', nameUA: 'піца' };
   productNameEN: string;
   productNameUA: string;
   productDescription: string;
@@ -44,21 +44,36 @@ export class AdminProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.adminJSONProduct();
-    this.adminJSONCategory();
+    // this.adminJSONProduct();
+    // this.adminJSONCategory();
+    this.adminFirebaseCategories();
+    this.adminFirebaseProducts();
   }
 
-  private adminJSONProduct(): void {
-    this.ProductService.getJSONProduct().subscribe(data => {
-      this.product = data;
-    });
+  private adminFirebaseCategories(): void {
+    this.CategoryService.getFirecloudCategory().subscribe(
+      collection => {
+        this.categories = collection.map(category => {
+          const data = category.payload.doc.data() as ICategory;
+          const id = category.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
   }
 
-  private adminJSONCategory(): void {
-    this.CategoryService.getJSONCategory().subscribe(data => {
-      this.categories = data;
-    });
+  private adminFirebaseProducts(): void {
+    this.ProductService.getFirecloudProduct().subscribe(
+      collection => {
+        this.product = collection.map(product => {
+          const data = product.payload.doc.data() as IProduct;
+          const id = product.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
   }
+
   setCategory(): void {
     this.productCategory = this.categories.filter(cat => cat.nameEN === this.categoryName)[0];
   }
@@ -80,7 +95,7 @@ export class AdminProductComponent implements OnInit {
 
   addCategory(): void {
     if (this.productNameEN && this.productNameUA) {
-      const product: IProduct = new Product(
+      const newP: IProduct = new Product(
         this.productID,
         this.productCategory,
         this.productNameEN,
@@ -90,10 +105,15 @@ export class AdminProductComponent implements OnInit {
         this.productPrice,
         this.productImage);
 
-      delete product.id;
-      this.ProductService.postJSONProduct(product).subscribe(
-        () => { this.adminJSONProduct(); }
-      );
+      delete newP.id;
+      this.ProductService.postFirecloudProduct(Object.assign({}, newP)).then(
+        () => {
+          console.log('add product');
+        }
+      )
+      // this.ProductService.postJSONProduct(newP).subscribe(
+      //   () => { this.adminJSONProduct(); }
+      // );
       this.reset()
     } else alert('Fill all fields');
   }
@@ -119,9 +139,12 @@ export class AdminProductComponent implements OnInit {
   }
   delete() {
     this.modalSwichDelete = !this.modalSwichDelete;
-    this.ProductService.deleteJSONProduct(this.productID).subscribe(
-      () => { this.adminJSONProduct(); }
+    this.ProductService.deleteFirecloudProduct(this.productID).then(
+      () => { this.adminFirebaseProducts(); }
     );
+    // this.ProductService.deleteJSONProduct(this.productID).subscribe(
+    //   () => { this.adminJSONProduct(); }
+    // );
   }
   // --------------------
 
@@ -149,9 +172,15 @@ export class AdminProductComponent implements OnInit {
         this.productWeight,
         this.productPrice,
         this.productImage);
-      this.ProductService.updateJSONProduct(product).subscribe(
-        () => { this.adminJSONProduct(); }
+
+      this.ProductService.updateFirecloudProduct(Object.assign({}, product)).then(
+        () => {
+          console.log('update product');
+        }
       );
+      // this.ProductService.updateJSONProduct(product).subscribe(
+      //   () => { this.adminJSONProduct(); }
+      // );
       this.reset()
     } else alert('Fill all fields');
   }
@@ -180,5 +209,19 @@ export class AdminProductComponent implements OnInit {
   }
   // -----------------
 
+
+
+
+  // private adminJSONProduct(): void {
+  //   this.ProductService.getJSONProduct().subscribe(data => {
+  //     this.product = data;
+  //   });
+  // }
+
+  // private adminJSONCategory(): void {
+  //   this.CategoryService.getJSONCategory().subscribe(data => {
+  //     this.categories = data;
+  //   });
+  // }
 
 }

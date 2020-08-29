@@ -17,10 +17,10 @@
                     <div class="other">
                         <span *ngIf="category !== 'drinks'">Розмір: <b>30 см</b></span>
                         <ng-container *ngIf="category == 'drinks'; else elseTemplate">
-                            <span>Об'єм: <b>{{ product.weight }}</b></span>
+                            <span>Об'єм: <b>{{ product?.weight }}</b></span>
                         </ng-container>
                         <ng-template #elseTemplate>
-                            <span>Вага: <b>{{ product.weight }}</b></span>
+                            <span>Вага: <b>{{ product?.weight }}</b></span>
                         </ng-template>
                     </div>
                 </div>
@@ -28,12 +28,12 @@
                 <div class="details__order">
                     <div class="count">Кількість: 
                         <i class="fas fa-minus" (click)="countMinus()"></i>
-                        <input type="text" maxlength="3" [value]="product.count" readonly>
+                        <input type="text" maxlength="3" [value]="product?.count" readonly>
                         <i class="fas fa-plus" (click)="countPlus()"></i>
                     </div>
                     <div>
                         <span>Загалом: </span>
-                        {{ product.price * product.count }}
+                        {{ product?.price * product?.count }}
                         <span> грн.</span>
                     </div>
                     <div (click)="addBasket(product)">Замовити</div>

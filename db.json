@@ -221,6 +221,50 @@
       "dateOrder": "2020-08-13T13:08:36.994Z",
       "userComment": "comment",
       "status": "ВІДМІНЕНО"
+    },
+    {
+      "userName": "анонім",
+      "userPhone": "911",
+      "userCity": "Гондурас",
+      "userStreet": "Гондурасів",
+      "userHouse": "1",
+      "ordersDetails": [
+        {
+          "id": 4,
+          "category": {
+            "id": 1,
+            "nameEN": "pizza",
+            "nameUA": "піца"
+          },
+          "nameEN": "pizza",
+          "nameUA": "Діабола",
+          "description": "соус томатний, сир моцарела, перець чилі, ковбаса пепероні.",
+          "weight": "500",
+          "price": "130",
+          "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Flapiec-1.jpeg?alt=media&token=61a6cfe4-941b-4881-9122-1718a3f5a22e",
+          "count": 1
+        },
+        {
+          "category": {
+            "nameEN": "drinks",
+            "nameUA": "Напої",
+            "id": 4
+          },
+          "nameEN": "cola",
+          "nameUA": "кола",
+          "description": "Кока-кола ",
+          "weight": "0,5 л",
+          "price": "20",
+          "image": "https://firebasestorage.googleapis.com/v0/b/juniors-aa10e.appspot.com/o/images%2Fcola0.5.jpeg?alt=media&token=80932073-fbea-486a-9138-bb8a8f0d8a1b",
+          "count": 1,
+          "id": 6
+        }
+      ],
+      "totalPayment": 150,
+      "dateOrder": "2020-08-20T18:11:00.639Z",
+      "userComment": "",
+      "status": "В обробці",
+      "id": 2
     }
   ]
 }

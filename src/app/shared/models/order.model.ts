@@ -2,7 +2,7 @@ import { IOrder } from '../interfaces/order.interface';
 import { IProduct } from '../interfaces/product.interface';
 
 export class Order implements IOrder {
-    constructor(public id: number,
+    constructor(public id: string,
                 public userName: string,
                 public userPhone: string,
                 public userCity: string,

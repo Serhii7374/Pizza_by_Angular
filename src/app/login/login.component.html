@@ -2,7 +2,7 @@
     <div class="container">
         <form [formGroup]="loginForm" novalidate (ngSubmit)="submit()">
             <div>
-                <label for="email">Email</label>
+                <label for="email">Email admin@gmail.com</label>
                 <input class="inpDecor" type="text" id="email" formControlName="userEmail"
                     placeholder="enter your email..">
                 <div *ngIf="loginForm.controls['userEmail'].invalid && loginForm.controls['userEmail'].touched">
@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div>
-                <label for="pass">Password</label>
+                <label for="pass">Password 111111</label>
                 <input class="inpDecor" type="text" id="pass" formControlName="userPassword"
                     placeholder="enter your password..">
             </div>

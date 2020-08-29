@@ -4,6 +4,8 @@ import { OrderService } from '../../shared/services/order.service';
 import { IProduct } from '../../shared/interfaces/product.interface';
 import { IOrder } from '../../shared/interfaces/order.interface';
 import { Order } from '../../shared/models/order.model';
+import { AngularFireStorage } from '@angular/fire/storage';
+
 
 @Component({
   selector: 'app-admin-order',
@@ -21,7 +23,7 @@ export class AdminOrderComponent implements OnInit {
 
   product: Array<IProduct> = [];
 
-  orderID = 1;
+  orderID = '1';
   orderStatus: string;
   orderName: string;
   orderPhone: string;
@@ -41,36 +43,55 @@ export class AdminOrderComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private ProductService: ProductService) { }
+    private ProductService: ProductService,
+    private afStorage: AngularFireStorage) { }
 
   ngOnInit(): void {
-    this.adminJSONOrder();
-    this.adminJSONProduct();
+    // this.adminJSONOrder();
+    // this.adminJSONProduct();
+    this.adminFirebaseOrders();
+    this.adminFirebaseProducts();
   }
 
-  private adminJSONOrder(): void {
-    this.orderService.getJSONOrder().subscribe(data => {
-      this.orders = data;
-    });
+  // private adminJSONOrder(): void {
+  //   this.orderService.getJSONOrder().subscribe(data => {
+  //     this.orders = data;
+  //   });
+  // }
+
+  // private adminJSONProduct(): void {
+  //   this.ProductService.getJSONProduct().subscribe(data => {
+  //     this.product = data;
+  //   });
+  // }
+
+  private adminFirebaseProducts(): void {
+    this.ProductService.getFirecloudProduct().subscribe(
+      collection => {
+        this.product = collection.map(product => {
+          const data = product.payload.doc.data() as IProduct;
+          const id = product.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
   }
 
-  private adminJSONProduct(): void {
-    this.ProductService.getJSONProduct().subscribe(data => {
-      this.product = data;
-    });
+  private adminFirebaseOrders(): void {
+    this.orderService.getFirecloudOrder().subscribe(
+      collection => {
+        this.orders = collection.map(order => {
+          const data = order.payload.doc.data() as IOrder;
+          const id = order.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
   }
 
   setStatus(value: string) {
     this.orderStatus = value;
   }
-
-  // --- онулення данних форми і закриття модалки ---
-  reset() {
-    document.forms[0].reset();
-    this.orderStatus = "в обробці";
-    this.modalDetailsSwich = !this.modalDetailsSwich;
-  }
-
 
   // --- видалення замовлення ---
   deleteOrder(order: IOrder): void {
@@ -79,9 +100,12 @@ export class AdminOrderComponent implements OnInit {
   }
   delete() {
     this.modalSwichDelete = !this.modalSwichDelete;
-    this.orderService.deleteJSONOrder(this.orderID).subscribe(
-      () => { this.adminJSONOrder(); }
+    this.orderService.deleteFirecloudOrder(this.orderID).then(
+      () => { this.adminFirebaseProducts(); }
     );
+    // this.orderService.deleteJSONOrder(this.orderID).subscribe(
+    //   () => { this.adminJSONOrder(); }
+    // );
   }
   // --------------------
 
@@ -113,9 +137,15 @@ export class AdminOrderComponent implements OnInit {
       this.orderDate,
       this.orderComment,
       this.orderStatus);
-    this.orderService.updateOrder(product).subscribe(
-      () => { this.adminJSONOrder(); }
-    );
+      this.orderService.updateFirecloudOrder(Object.assign({}, product)).then(
+        () => {
+          console.log('update order');
+        }
+      );
+
+    // this.orderService.updateOrder(product).subscribe(
+    //   () => { this.adminJSONOrder(); }
+    // );
     this.reset();
   }
   // ----------------------
@@ -165,6 +195,13 @@ export class AdminOrderComponent implements OnInit {
     }, 0);
   }
   // ------------------------
+
+  // --- онулення данних форми і закриття модалки ---
+  reset() {
+    document.forms[0].reset();
+    this.orderStatus = "в обробці";
+    this.modalDetailsSwich = !this.modalDetailsSwich;
+  }
 
   // --- модалки ---
   openDetailsModal(): void {

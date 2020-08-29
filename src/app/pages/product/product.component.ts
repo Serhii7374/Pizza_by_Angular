@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../shared/services/product.service';
+// import { ProductService } from '../../shared/services/product.service';
 import { OrderService } from '../../shared/services/order.service';
 import { IProduct } from '../../shared/interfaces/product.interface';
 import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Component({
@@ -15,11 +16,18 @@ export class ProductComponent implements OnInit {
   category: string;  
 
   constructor(
-    private ProductService: ProductService,
+    // private ProductService: ProductService,
     private orderService: OrderService,
     private actRoute: ActivatedRoute,
-    private router: Router) {
-    this.router.events.subscribe((event: Event) => {
+    private router: Router,
+    private firecloud:AngularFirestore) {
+    // this.router.events.subscribe((event: Event) => {
+    //   if (event instanceof NavigationEnd) {
+    //     const categoryName = this.actRoute.snapshot.paramMap.get('category');
+    //     this.getProducts(categoryName);
+    //   }
+    // });
+        this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         const categoryName = this.actRoute.snapshot.paramMap.get('category');
         this.getProducts(categoryName);
@@ -27,16 +35,30 @@ export class ProductComponent implements OnInit {
     });
   }
 
-
   ngOnInit(): void {
+    // this.adminFirebaseProducts();
   }
 
   private getProducts(categoryName: string = 'pizza'): void {
-    this.ProductService.getCategoryProduct(categoryName).subscribe(data => {
-      this.userProduct = data;
-      this.category = this.userProduct[0]?.category.nameUA;
-    });
+    this.userProduct = [];
+    this.firecloud.collection('products').ref.where('category.nameEN', '==', categoryName).onSnapshot(
+      collection => {
+        collection.forEach(document => {
+          const data = document.data() as IProduct;
+          const id = document.id;
+          this.userProduct.push({ id, ...data });
+        });
+        this.category = this.userProduct[0]?.category.nameUA;
+      }
+    );
   }
+
+  // private getProducts(categoryName: string = 'pizza'): void {
+  //   this.ProductService.getCategoryProduct(categoryName).subscribe(data => {
+  //     this.userProduct = data;
+  //     this.category = this.userProduct[0]?.category.nameUA;
+  //   });
+  // }
 
   countPlus(product: IProduct) {
     if (product.count < 99) {

@@ -20,7 +20,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 import { SortProductPipe } from './shared/pipes/sort-product.pipe';
 import { ProductComponent } from './pages/product/product.component';
 import { FooterComponent } from './components/footer/footer.component';

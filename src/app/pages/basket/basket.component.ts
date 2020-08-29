@@ -16,7 +16,7 @@ export class BasketComponent implements OnInit {
   swichPill: number = 1;
   order: Array<IProduct> = [];
   totalPrice = 0;
-  orderID = 1;
+  orderID = '1';
   userName: string;
   userPhone: string;
   userCity: string;
@@ -73,7 +73,7 @@ export class BasketComponent implements OnInit {
   }
 
   addOrder(form: NgForm): void {
-    const order: IOrder = new Order(
+    const newOrder: IOrder = new Order(
       this.orderID,
       form.controls.userName.value,
       form.controls.userPhone.value,
@@ -83,18 +83,23 @@ export class BasketComponent implements OnInit {
       this.order,
       this.totalPrice,
       new Date(),
-      form.controls.userComments.value);        
-    delete order.id;
-
-    this.orderService.addJSONOrder(order).subscribe(
+      form.controls.userComments.value);
+    delete newOrder.id;
+    this.orderService.postFirecloudOrder(Object.assign({}, newOrder)).then(
       () => {
+        console.log('add order');
         this.resetBasket();
       }
-    );
+    )
+    // this.orderService.addJSONOrder(order).subscribe(
+    //   () => {
+    //     this.resetBasket();
+    //   }
+    // );
   }
 
   private resetBasket(): void {
-    localStorage.clear();
+    localStorage.removeItem('myOrder');
     this.order = [];
     this.totalPrice = 0;
     this.orderService.basket.next('check');

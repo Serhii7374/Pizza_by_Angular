@@ -60,8 +60,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let p of product | search:SearchText | sortProduct:order:reverse; let i=index">
-                    <td>{{ p.id }}</td>
+                <tr *ngFor="let p of product; let i=index">
+                    <td>{{ i+1 }}</td>
                     <td>{{ p.category.nameEN }}</td>
                     <td>{{ p.nameEN }}</td>
                     <td>{{ p.nameUA }}</td>

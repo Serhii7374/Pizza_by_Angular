@@ -6,7 +6,7 @@
         <input type="button" class="btn-dark" value="Add" (click)="addBlog()">
     </ng-container>    
     <ng-template #save>
-        <input type="button" class="btn-light" value="Save edit" (click)="saveEdit(b)">
+        <input type="button" class="btn-light" value="Save edit" (click)="saveEdit()">
     </ng-template>    
 </form>
 
@@ -27,7 +27,7 @@
             <td>{{ i+1 }}</td>
             <td>{{ b.title }}</td>
             <td>{{ b.text }}</td>
-            <td>{{ b.date | date }}</td>
+            <td>{{ b.date.seconds*1000 | date}}</td>
             <td>{{ b.author }}</td>
             <td>
                 <input type="button" class="btn-dark" value="Edit" (click)="editBlog(b)">
